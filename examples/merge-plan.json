@@ -1,0 +1,6 @@
+{
+  "sources": [
+    { "from": "./left", "to": "reports", "label": "first" },
+    { "from": "./right", "to": "reports", "label": "second" }
+  ]
+}

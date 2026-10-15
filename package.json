@@ -1,0 +1,15 @@
+{
+  "name": "carrycheck",
+  "version": "0.1.0",
+  "description": "Preflight directory handoffs and multi-source merges before files collide on someone else's machine.",
+  "type": "module",
+  "bin": { "carrycheck": "bin/carrycheck.js" },
+  "exports": { ".": "./src/index.js" },
+  "files": ["bin", "src", "README.md", "README.zh-CN.md", "LICENSE", "examples"],
+  "scripts": { "test": "node --test", "demo": "node bin/carrycheck.js --manifest examples/problem-manifest.json --format text", "check": "node bin/carrycheck.js . --target windows --exclude .git" },
+  "engines": { "node": ">=22" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/DrEli7/carrycheck.git" },
+  "bugs": { "url": "https://github.com/DrEli7/carrycheck/issues" },
+  "keywords": ["portability", "filesystem", "preflight", "unicode", "cli", "migration", "collision"]
+}

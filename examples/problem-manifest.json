@@ -1,0 +1,13 @@
+{
+  "entries": [
+    { "path": "docs/Readme.txt", "source": "first", "type": "file" },
+    { "path": "docs/README.txt", "source": "second", "type": "file" },
+    { "path": "exports/NUL.tar.gz", "source": "first", "type": "file" },
+    { "path": "names/caf\u00e9.txt", "source": "first", "type": "file" },
+    { "path": "names/cafe\u0301.txt", "source": "second", "type": "file" },
+    { "path": "settings", "source": "first", "type": "file" },
+    { "path": "settings/app.json", "source": "second", "type": "file" },
+    { "path": "outside-link", "source": "first", "type": "symlink", "linkTarget": "../outside" },
+    { "path": "draft\u200b.txt", "source": "second", "type": "file" }
+  ]
+}
