@@ -51,10 +51,15 @@ export function audit(input, configuration = {}) {
 
   // Materialize ancestors so a file can conflict with an implied directory.
   const nodes = new Map();
+  let materializedTextUnits = 0;
   function insert(name, type, origin, explicit) {
     let node = nodes.get(name);
     if (!node) {
       if (nodes.size >= 200000) throw new Error('Input exceeds the 200000-node virtual tree analysis limit.');
+      // A few long shared prefixes can amplify a small manifest dramatically.
+      // Bound stored names as well as input size and the number of nodes.
+      if (materializedTextUnits + name.length > 16000000) throw new Error('Input exceeds the 16000000-unit materialized path analysis limit.');
+      materializedTextUnits += name.length;
       node = { name, types: new Set(), origins: new Map(), explicit: [] };
       nodes.set(name, node);
     }

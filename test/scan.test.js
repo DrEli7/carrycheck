@@ -84,7 +84,13 @@ test('records symlinks without scanning targets and rejects a symlink root', asy
 
 test('rejects invalid UTF-8 filesystem names instead of replacing their bytes', { skip: process.platform === 'win32' ? 'Windows filenames use UTF-16, not arbitrary byte names.' : false }, async (t) => {
   const root = await fixture(t);
-  await writeFile(Buffer.concat([Buffer.from(root + path.sep), Buffer.from([0xff])]), '');
+  try {
+    await writeFile(Buffer.concat([Buffer.from(root + path.sep), Buffer.from([0xff])]), '');
+  } catch (error) {
+    // APFS can reject invalid bytes before a directory entry can exist.
+    if (error.code === 'EILSEQ') return t.skip('This filesystem rejects invalid UTF-8 filenames at creation.');
+    throw error;
+  }
   await assert.rejects(scanDirectory(root), /not valid UTF-8/);
 });
 

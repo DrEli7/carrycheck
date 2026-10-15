@@ -144,3 +144,8 @@ test('resource limits reject deep trees and oversized strings before materializi
   assert.throws(() => audit(Array(100001).fill(file('a'))), /at most 100000/);
   assert.throws(() => audit(Array(501).fill(file('a'.repeat(32000)))), /textual analysis limit/);
 });
+
+test('bounds cumulative materialized prefixes, not just raw input and node count', () => {
+  const entries = Array.from({ length: 3 }, (_, index) => file([`${'x'.repeat(32000)}${index}`, ...Array(255).fill('a')].join('/')));
+  assert.throws(() => audit(entries), /materialized path analysis limit/);
+});
