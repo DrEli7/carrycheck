@@ -2,7 +2,7 @@
 
 **Find directory handoff and merge problems before you copy anything.**
 
-[中文说明](README.zh-CN.md) · [MIT license](LICENSE) · Node.js 22+ · Zero dependencies
+[MIT license](LICENSE) · Node.js 22+ · Zero dependencies
 
 Two folders can each look fine and still collide when their contents land in one destination. CarryCheck projects one or more source trees into a virtual destination and reports overwrites, incompatible names, path budgets, and fragile links—with the source of each problem attached.
 

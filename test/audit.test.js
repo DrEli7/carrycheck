@@ -85,6 +85,7 @@ test('Windows counts UTF16 units and posix counts UTF8 bytes', () => {
   assert.ok(posix.findings.some((item) => item.code === 'PATH_BUDGET'));
 });
 test('component budget catches byte-heavy names independently of overall path budget', () => {
+  // U+754C is a Unicode fixture: three UTF-8 bytes but one UTF-16 code unit.
   assert.ok(codes([file('界'.repeat(86))], { target: 'posix', maxPath: 4095 }).includes('COMPONENT_BUDGET'));
   assert.ok(!codes([file('界'.repeat(86))], { target: 'windows', maxPath: 4095 }).includes('COMPONENT_BUDGET'));
 });
